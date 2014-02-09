@@ -46,6 +46,22 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+\frametitle{Example}
+% sec 5 graphical model
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Motivation}
+
+When and why would we use IBP?
+
+\begin{itemize}
+\item As a prior on sparse binary matrices with a countably infinite number of columns
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 \frametitle{Introduction}
 
 Indian Buffet Process:
@@ -62,17 +78,6 @@ Indian Buffet Process:
 \caption{Griffiths and Ghahramani (2011) Figure 5}
 \end{center}
 \end{figure}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Motivation}
-
-When and why would we use IBP?
-
-\begin{itemize}
-\item As a prior on sparse binary matrices with a countably infinite number of columns
-\end{itemize}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -130,6 +135,11 @@ Limitation: each object (customer) can only belong to one class (table).
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+\frametitle{Stick-Breaking Construction of IBP}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 \frametitle{Demo}
 
 \begin{center}
@@ -157,6 +167,11 @@ Limitation: each object (customer) can only belong to one class (table).
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+\frametitle{Variational Inference}
+% sec 6.9
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 \frametitle{Application 1: Choice Behavior}
 
 % 6.1
@@ -181,7 +196,7 @@ Limitation: each object (customer) can only belong to one class (table).
 \caption{G\"{o}r\"{u}r, J\"{a}kel, and Rasmussen (2006) Figure 3}
 \end{center}
 \end{figure}
-% ``We showed empirically that the in- finite model (iEBA) can capture the latent structure in the choice data as well as the handcrafted model (tEBA). For data for which we have less prior informa- tion it might not be possible to handcraft a reasonable feature matrix.''
+% ``We showed empirically that the infinite model (iEBA) can capture the latent structure in the choice data as well as the handcrafted model (tEBA). For data for which we have less prior informa- tion it might not be possible to handcraft a reasonable feature matrix.''
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -206,11 +221,12 @@ Limitation: each object (customer) can only belong to one class (table).
 Limitations of IBP:
 \begin{enumerate}
 \item Coupling of average number of features $\alpha$ and total number of features $N\alpha$ (can be overcome with a two-parameter generalization)
+\item Computationally complex, can be time-consuming
 \end{enumerate}
 
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.5]{./img/two-parameter-ibp.png}
+\includegraphics[scale=0.3]{./img/two-parameter-ibp.png}
 \caption{Griffiths and Ghahramani (2011) Figure 10}
 \end{center}
 \end{figure}
