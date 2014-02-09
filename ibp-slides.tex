@@ -147,6 +147,7 @@ Limitation: each object (customer) can only belong to one class (table).
 \item The number of dishes on each customer's plate is distributed Poisson($\alpha$) (by exchangeability)
 \item $\bf{Z}$ remains sparse as $K\rightarrow \infty$: effective dimensions of $\bf{Z}$ are $N \times K_+$, and the expected number of entries is $N\alpha$
 \end{itemize}
+% note that the third item here is a limitation of the IBP: average number of features $\alpha$ and total number of features $N\alpha$ are directly coupled
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -199,7 +200,21 @@ Limitation: each object (customer) can only belong to one class (table).
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Extensions}
+\frametitle{Discussion}
+
+
+Limitations of IBP:
+\begin{enumerate}
+\item Coupling of average number of features $\alpha$ and total number of features $N\alpha$ (can be overcome with a two-parameter generalization)
+\end{enumerate}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{./img/two-parameter-ibp.png}
+\caption{Griffiths and Ghahramani (2011) Figure 10}
+\end{center}
+\end{figure}
+
 \end{frame}
  
 % End of slides
