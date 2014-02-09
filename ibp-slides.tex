@@ -121,10 +121,12 @@ Limitation: each object (customer) can only belong to one class (table).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Beta Process}
+% p 1194-5
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Indian Buffet Process}
+% p 1199
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -150,11 +152,36 @@ Limitation: each object (customer) can only belong to one class (table).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Inference by Gibbs Sampling}
+% p 1201
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Application 1: Choice Behavior}
+
 % 6.1
+\begin{center}
+``A Choice Model with Infinitely Many Latent Features'' \\ (G\"{o}r\"{u}r, J\"{a}kel, and Rasmussen, ICML 2006)
+\end{center}
+
+\begin{itemize}
+\item Customers compare items (e.g. cell phones) based on the (binary) features of each; more features are better
+\item Number of features is potentially infinite and ordering is not important, so IBP is used
+\item Celebrity example: ``With whom would you prefer to spend an hour of conversation?'' 
+\end{itemize}
+
+% \begin{eqnarray*}
+% P(f_{ik}=1|f_{-i,k}) &=& {m_{-i,k} + \alpha/K \over N + \alpha/K} \\
+% \lim_{K \rightarrow \infty} P(f_{ik}=1|f_{-i,k}) &=& {m_{-i,k} \over N}
+% \end{eqnarray*}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.3]{./img/celebrity-example.png}
+\caption{G\"{o}r\"{u}r, J\"{a}kel, and Rasmussen (2006) Figure 3}
+\end{center}
+\end{figure}
+% ``We showed empirically that the in- finite model (iEBA) can capture the latent structure in the choice data as well as the handcrafted model (tEBA). For data for which we have less prior informa- tion it might not be possible to handcraft a reasonable feature matrix.''
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
