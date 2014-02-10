@@ -273,10 +273,17 @@ Iterate continuously over the rows $\mathbf{z}_i$ ($i=1\ldots N$) of $\mathbf{Z}
 \end{figure}   
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \begin{frame}
-% \frametitle{Variational Inference}
-% % sec 6.9
-% \end{frame}
+\begin{frame}
+    \frametitle{Other inference strategies}
+\begin{itemize}
+\item Variational inference in latent feature models with a mean-field approximation
+\item Adding Metropolis-Hastings proposals to the Gibbs sampler to explore the space with larger jumps
+\item Maintaining posterior of weight matrix $\mathbf{A}$ instead of marginalizing out $\mathbf{A}$ 
+    allows for sampling with faster mixing and iterations taking $O(N)$ time
+\item This also allows parallelization via computing features of different objects independently 
+\end{itemize}
+% sec 6.9
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Application 1: Choice Behavior}
