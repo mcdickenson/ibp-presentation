@@ -46,6 +46,26 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+\frametitle{Latent feature models}
+\begin{itemize}
+\item Feature model: $N$ items described by $K$ features
+\item Dense feature model: every feature is present in every item, e.g. PCA
+\item Sparse feature model: only some features present in each item, and we can assume feature values and presence are independent:
+    \begin{eqnarray*}
+        \mathbf{F} &=& \mathbf{A} \otimes \mathbf{Z} \\
+        P(\mathbf{F}) &=& P(\mathbf{A})P(\mathbf{Z})
+    \end{eqnarray*}
+\end{itemize}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.4]{./img/featuremodel.png}
+\caption{Griffiths and Ghahramani (2011) Figure 3}
+\end{center}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 \frametitle{Example}
 
 \begin{figure}
@@ -66,33 +86,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Motivation}
-
-When and why would we use IBP?
-
 \begin{itemize}
-\item As a prior on sparse binary matrices with a countably infinite number of columns
+\item Problem with finite latent feature model: $K$ is fixed
+\item Goal: construct nonparametric prior on $\mathbf{Z}$ so that $K$ grows with the complexity of the dataset
+\item As with DPMMs, we can try to build one by taking $K \rightarrow \infty$ in a finite feature model
 \end{itemize}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Introduction}
-
-Indian Buffet Process:
-\begin{enumerate}
-\item $N$ customers enter (in sequence) a buffet restaurant with an infinite number of dishes
-\item First customer fills her plate with Poisson($\alpha$) number of dishes
-\item $i^{th}$ customer samples dishes in proportion to their popularity, with probability $\frac{m_k}{i}$, where $m_k$ is the number of previous customers who sampled dish $k$
-\item $i^{th}$ customer then samples a Poisson($\frac{\alpha}{i}$) number of new dishes
-\end{enumerate}
 
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.5]{./img/ibp-sorted.png}
-\caption{Griffiths and Ghahramani (2011) Figure 5}
+\includegraphics[scale=0.4]{./img/beta-bernoulli.png}
+\caption{Griffiths and Ghahramani (2011) Figure 4}
 \end{center}
 \end{figure}
-
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -107,7 +112,7 @@ Finite version (Dirichlet distribution):
 
 Integrating out $\theta$: $P(c) = { \prod_{k=1}^K \Gamma(m_k + \frac{\alpha}{K}) \over \Gamma(\frac{\alpha}{K})^K} {\Gamma(\alpha) \over \Gamma(N+\alpha)}$
 
-What happens as $K \rightarrow \infty$?
+As $K \rightarrow \infty$, we get the CRP
 
 \begin{figure}
 \begin{center}
@@ -139,25 +144,47 @@ Limitation: each object (customer) can only belong to one class (table).
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Beta Process}
-% p 1194-5
+\frametitle{Finite latent feature models}
+The basic finite distribution on $z_{i,k}$s: 
+\begin{eqnarray*}
+    \pi_k | \alpha &\sim& \text{Beta}(\frac{\alpha}{K}, 1) \\
+    z_{i,k} | \pi_k &\sim& \text{Bernoulli}(\pi_k)
+\end{eqnarray*}
+As with DPMMs, we can marginalize out latent feature presence probabilities $\pi_k$ to obtain a distribution on matrices $\mathbf{Z} \in \left\{ 0,1 \right\}^{N \times K}$:
+\begin{eqnarray*}
+    P(\mathbf{Z}) &=& \prod_{k=1}^K \int \left( \prod_{i=1}^N P(z_{ik} | \pi_k) \right) P(\pi_k) d \pi_k \\
+    &=& \prod_{k=1}^K \frac{ \frac{\alpha}{K} \Gamma(m_k + \frac{\alpha}{K} ) \Gamma(N - m_k + 1) }{\Gamma(N + 1 + \frac{\alpha}{K}) }
+\end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{The $K \rightarrow \infty$ limit}
+\begin{itemize}
+\item $lof(\mathbf{Z})$ is the matrix obtained by ordering the columns of $\mathbf{Z}$ as $N$-digit binary numbers
+\item To define a probability over infinitely wide binary matrices using de Finetti's Theorem,
+we need exchangeable symmetry, so we define \emph{lof} equivalence classes by modding out column order:
+\end{itemize}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.5]{./img/ibp-sorted.png}
+\caption{Griffiths and Ghahramani (2011) Figure 5}
+\end{center}
+\end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Indian Buffet Process}
-% p 1199
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Stick-Breaking Construction of IBP}
 
+Indian Buffet Process:
 \begin{enumerate}
-\item Recursively break (an initially unit-length) stick, breaking off a $\text{Beta}(\alpha, 1)$ portion at each step
-\item Let each portion of the ``stick'', $\pi_k$ represent the probability of each feature (sorted from largest to smallest)
+\item $N$ customers enter (in sequence) a buffet restaurant with an infinite number of dishes
+\item First customer fills her plate with Poisson($\alpha$) number of dishes
+\item $i^{th}$ customer samples dishes in proportion to their popularity, with probability $\frac{m_k}{i}$, where $m_k$ is the number of previous customers who sampled dish $k$
+\item $i^{th}$ customer then samples $K^{(i)}_1 \sim \text{Poisson}(\frac{\alpha}{i})$ number of new dishes
 \end{enumerate}
-
-This helps to show the relation between the Dirichlet process and the IBP. The stick-breaking construction is also useful for defining inference algorithms.
-
+\bigskip
+Resulting probability distribution on matrices: $$P(\mathbf{Z}) = \frac{\alpha^{K_+}}{\prod_{i=1}^N K^{(i)}_1 ! } \text{exp}(\alpha H_N) \prod_{k=1}^{K_+} \frac{(N - m_k)! (m_k - 1)!}{N!} $$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -167,6 +194,23 @@ This helps to show the relation between the Dirichlet process and the IBP. The s
 \href{http://mcdickenson.shinyapps.io/ibp-demo}{mcdickenson.shinyapps.io/ibp-demo}
 \includegraphics[scale=0.4]{./img/ibp-shiny-demo.png}
 \end{center}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Alternative derivation: Beta Process}
+% p 1194-5
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Alternative derivation: Stick-Breaking}
+
+\begin{enumerate}
+\item Recursively break (an initially unit-length) stick, breaking off a $\text{Beta}(\alpha, 1)$ portion at each step
+\item Let each portion of the ``stick'', $\pi_k$ represent the probability of each feature (sorted from largest to smallest)
+\end{enumerate}
+
+This helps to show the relation between the Dirichlet process and the IBP. The stick-breaking construction is also useful for defining inference algorithms.
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -184,7 +228,18 @@ This helps to show the relation between the Dirichlet process and the IBP. The s
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Inference by Gibbs Sampling}
-% p 1201
+Given some data $\mathbf{X}$, we want to sample from a marginal posterior 
+\[
+    P(z_{i,k} = 1 | \mathbf{Z}_{-(ik)},\mathbf{X} ) \propto P(\mathbf{X}| \mathbf{Z}) P(z_{i,k} = 1 | \mathbf{Z}_{-(ik)} )
+\]
+
+Iterate continuously over the rows $\mathbf{z}_i$ ($i=1\ldots N$) of $\mathbf{Z}$:
+\begin{enumerate}
+    \item For each column $k$ of $\mathbf{Z}$, if $m_{-i,k} = 0$ (i.e. the rest of the column is empty) delete the column; 
+        otherwise set $z_{i,k}=1$ with probability $$P(\mathbf{X}|\mathbf{Z}) P(z_{i,k}=1 | \mathbf{z}_{-i,k}) =  P(\mathbf{X}|\mathbf{Z})\frac{m_{-i,k}}{N}$$
+    \item At the end of the row, add $K_1^{(i)} \sim P(\mathbf{X}|\mathbf{Z}) \text{Poisson}(\frac{\alpha}{N})$ new columns with ones in row $i$
+\end{enumerate}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -223,6 +278,7 @@ This helps to show the relation between the Dirichlet process and the IBP. The s
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Application 2: Collaborative Filtering}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
