@@ -383,9 +383,11 @@ An advantage of the focused topic model is that it separates the global topic pr
 % Adams, Wallach, and Ghahramani
 \begin{itemize}
 \item Adams et al construct a prior on infinitely wide, infinitely deep sparse belief network structures
-\item Each pair of layers is conditionally represented by a 2-parameter IBP
-\item They prove that the generative process terminates at finite ``depth''
-\item They present MCMC algorithms for inference and test on images
+\item The Cascading Indian Buffet Process is an infinite sequence of binary matrices $$\mathbf{Z}^{(m)} \sim \text{IBP}(\alpha,\beta)$$
+    where $Z^{(m+1)}$ has the same number of rows as columns in $Z^{(m)}$
+\item Culinary analogy: Each ``dish'' in the restaurant also corresponds to a ``customer'' in the next restaurant
+\item Theorem: the CIBP generative process stops growing at finite ``depth''
+\item They also present MCMC algorithms for inference and test on images
 \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
