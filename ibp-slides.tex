@@ -255,6 +255,22 @@ Iterate continuously over the rows $\mathbf{z}_i$ ($i=1\ldots N$) of $\mathbf{Z}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Inference by Gibbs sampling} 
+\begin{figure}
+\begin{center}
+    \includegraphics[scale=0.4]{./img/ibp-inference-reconstruction.png}
+\end{center}
+\end{figure}   
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Inference by Gibbs sampling} 
+\begin{figure}
+\begin{center}
+    \includegraphics[scale=0.4]{./img/ibp-inference-example.png}
+\end{center}
+\end{figure}   
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Variational Inference}
 % sec 6.9
@@ -363,10 +379,34 @@ An advantage of the focused topic model is that it separates the global topic pr
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Extension 2: Collaborative Filtering}
+\frametitle{Extension 2: CIBPs for Belief Network Structure Learning}
 % Adams, Wallach, and Ghahramani
+\begin{itemize}
+\item Adams et al construct a prior on infinitely wide, infinitely deep sparse belief network structures
+\item Each pair of layers is conditionally represented by a 2-parameter IBP
+\item They prove that the generative process terminates at finite ``depth''
+\item They present MCMC algorithms for inference and test on images
+\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{CIBP prior samples}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{./img/cibp-samples.png}
+\end{center}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{CIBP Facial reconstruction}
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.6]{./img/cibp-reconstructions.png}
+\end{center}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Discussion}
 
