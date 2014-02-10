@@ -230,15 +230,31 @@ This helps to show the relation between the Dirichlet process and the IBP. The s
 % Williamson, Wang, Heller, and Blei (2010)
 
 \begin{center}
-% ``The IBP Compound Dirichlet Process and its Application to Focused Topic Modeling'' \\
+``The IBP Compound Dirichlet Process \\
+and its Application to Focused Topic Modeling'' \\
 Williamson, Wang, Heller, and Blei (2010)
 \end{center}
 
-Stick-breaking construction: $ \mu_k \sim \text{Beta}(\alpha, 1);
-\pi_k = \prod_{j=1}^k \mu_j;
-b_{m,k} \sim \text{Bernoulli}(\pi_k) $
+Stick-breaking construction:
 
-~\\
+\begin{eqnarray*}
+\mu_k \sim \text{Beta}(\alpha, 1) \\
+\pi_k = \prod_{j=1}^k \mu_j \\
+b_{m,k} \sim \text{Bernoulli}(\pi_k) 
+\end{eqnarray*}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Extension 1: Topic Modeling}
+% Williamson, Wang, Heller, and Blei (2010)
+
+\begin{center}
+``The IBP Compound Dirichlet Process \\
+and its Application to Focused Topic Modeling'' \\
+Williamson, Wang, Heller, and Blei (2010)
+\end{center}
 
 Focused topic model:
 \begin{enumerate}
@@ -260,6 +276,20 @@ Focused topic model:
     \end{enumerate}
   \end{itemize}
 \end{enumerate}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Extension 1: Topic Modeling}
+% Williamson, Wang, Heller, and Blei (2010)
+
+\begin{center}
+``The IBP Compound Dirichlet Process \\
+and its Application to Focused Topic Modeling'' \\
+Williamson, Wang, Heller, and Blei (2010)
+\end{center}
+
+An advantage of the focused topic model is that it separates the global topic proportions from the distribution over topics within a topic. A rare topic within the corpus can be dominant within a document (e.g. baseball), and a frequent topic can be a small proportion of many documents.
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
