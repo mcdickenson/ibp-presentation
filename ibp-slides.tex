@@ -35,12 +35,14 @@
 \frametitle{Outline}
 \begin{enumerate}
 \item Introduction
+\item Latent feature models
 \item Dirichlet and Chinese Restaurant Processes
+\item Finite latent feature models
 \item Beta and Indian Buffet Processes
-\item Gibbs sampling
-\item Demonstration/Visualization
-\item Applications: Choice Behavior and Collaborative Filtering
-\item Extensions: Topic Models and Cascading IBP
+\item Demonstration/visualization
+\item Alternative derivations
+\item Gibbs sampling and inference
+\item Applications: Choice Behavior, Topic Models, and Cascading IBP
 \item Discussion
 \end{enumerate}
 \end{frame}
@@ -188,16 +190,6 @@ Resulting probability distribution on matrices: $$P(\mathbf{Z}) = \frac{\alpha^{
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Demo}
-
-\begin{center}
-\href{http://mcdickenson.shinyapps.io/ibp-demo}{mcdickenson.shinyapps.io/ibp-demo}
-\includegraphics[scale=0.4]{./img/ibp-shiny-demo.png}
-\end{center}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
 \frametitle{Alternative derivation: Beta Process}
 % p 1194-5
 The CRP is obtained by marginalizing over a Dirichlet process:
@@ -213,6 +205,16 @@ The IBP is obtained by marginalizing over a Beta process:
     z_i | \theta &\sim& \text{BeP}(\theta) \\
     \text{IBP}(\alpha, \beta) &\sim& \int \prod_i P(z_i | \theta) P(\theta | \alpha, \beta, G_0) d\theta 
 \end{eqnarray*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Demo}
+
+\begin{center}
+\href{http://mcdickenson.shinyapps.io/ibp-demo}{mcdickenson.shinyapps.io/ibp-demo}
+\includegraphics[scale=0.4]{./img/ibp-shiny-demo.png}
+\end{center}
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -271,10 +273,10 @@ Iterate continuously over the rows $\mathbf{z}_i$ ($i=1\ldots N$) of $\mathbf{Z}
 \end{figure}   
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Variational Inference}
-% sec 6.9
-\end{frame}
+% \begin{frame}
+% \frametitle{Variational Inference}
+% % sec 6.9
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Application 1: Choice Behavior}
@@ -305,13 +307,13 @@ Iterate continuously over the rows $\mathbf{z}_i$ ($i=1\ldots N$) of $\mathbf{Z}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Application 2: Collaborative Filtering}
+% \begin{frame}
+% \frametitle{Application 2: Collaborative Filtering}
 
-\end{frame}
+% \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Extension 1: Topic Modeling}
+\frametitle{Application 2: Topic Modeling}
 % Williamson, Wang, Heller, and Blei (2010)
 
 \begin{center}
@@ -332,7 +334,7 @@ b_{m,k} \sim \text{Bernoulli}(\pi_k)
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Extension 1: Topic Modeling}
+\frametitle{Application 2: Topic Modeling}
 % Williamson, Wang, Heller, and Blei (2010)
 
 % \begin{center}
@@ -365,7 +367,7 @@ Focused topic model:
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Extension 1: Topic Modeling}
+\frametitle{Application 2: Topic Modeling}
 % Williamson, Wang, Heller, and Blei (2010)
 
 % \begin{center}
@@ -374,12 +376,12 @@ Focused topic model:
 % Williamson, Wang, Heller, and Blei (2010)
 % \end{center}
 
-An advantage of the focused topic model is that it separates the global topic proportions from the distribution over topics within a topic. A rare topic within the corpus can be dominant within a document (e.g. baseball), and a frequent topic can be a small proportion of many documents.
+An advantage of the focused topic model is that it separates the global topic proportions from the distribution over topics within a document. A rare topic within the corpus can be dominant within a document (e.g. baseball), and a frequent topic can be a small proportion of many documents.
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Extension 2: CIBPs for Belief Network Structure Learning}
+\frametitle{Application 3: CIBPs for Belief Network Structure Learning}
 % Adams, Wallach, and Ghahramani
 \begin{itemize}
 \item Adams et al construct a prior on infinitely wide, infinitely deep sparse belief network structures
