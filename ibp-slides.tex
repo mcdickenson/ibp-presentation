@@ -200,6 +200,19 @@ Resulting probability distribution on matrices: $$P(\mathbf{Z}) = \frac{\alpha^{
 \begin{frame}
 \frametitle{Alternative derivation: Beta Process}
 % p 1194-5
+The CRP is obtained by marginalizing over a Dirichlet process:
+\begin{eqnarray*}
+    \theta | \alpha, G_0 &\sim& \text{DP}(\alpha,G_0) \\
+    C | \theta &\sim& \text{Multinomial}(\theta) \\
+    CRP(\alpha) &\sim& \int P(C | \theta) P(\theta | \alpha, G_0) d\theta 
+\end{eqnarray*}
+This representation follows from de Finetti's Theorem, which gives the existence of conditionally independent representations of infinite exchangeable joint distributions.
+The IBP is obtained by marginalizing over a Beta process:
+\begin{eqnarray*}
+    \theta | \alpha, \beta, G_0 &\sim& \text{BP}(\alpha, \beta, G_0) \\
+    z_i | \theta &\sim& \text{BeP}(\theta) \\
+    \text{IBP}(\alpha, \beta) &\sim& \int \prod_i P(z_i | \theta) P(\theta | \alpha, \beta, G_0) d\theta 
+\end{eqnarray*}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
