@@ -151,6 +151,13 @@ Limitation: each object (customer) can only belong to one class (table).
 \begin{frame}
 \frametitle{Stick-Breaking Construction of IBP}
 
+\begin{enumerate}
+\item Recursively break (an initially unit-length) stick, breaking off a $\text{Beta}(\alpha, 1)$ portion at each step
+\item Let each portion of the ``stick'', $\pi_k$ represent the probability of each feature (sorted from largest to smallest)
+\end{enumerate}
+
+This helps to show the relation between the Dirichlet process and the IBP. The stick-breaking construction is also useful for defining inference algorithms.
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
